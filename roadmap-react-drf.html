@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roadmap: Full‑stack React + DRF</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb;
+  --border: #e2e8f0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.6;
+}
+.header {
+  padding: 48px 24px 24px;
+  background: linear-gradient(180deg, #f8fafc, #fff);
+  border-bottom: 1px solid var(--border);
+}
+.container { max-width: 900px; margin: 0 auto; padding: 0 24px 48px; }
+h1 { font-size: 36px; line-height: 1.2; margin: 0 0 8px; }
+h2 { margin-top: 40px; font-size: 24px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+h3 { margin-top: 24px; font-size: 20px; color: var(--fg); }
+p, li, blockquote { font-size: 16px; }
+blockquote {
+  margin: 12px 0; padding: 8px 12px; background: #f8fafc; border-left: 3px solid var(--accent); color: var(--muted);
+}
+code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+ul { padding-left: 22px; }
+hr { border: 0; border-top: 1px solid var(--border); margin: 24px 0; }
+.toc { background: #f8fafc; border: 1px solid var(--border); padding: 16px; border-radius: 12px; margin: 16px 0 24px; }
+.toc h2 { margin: 0 0 8px; font-size: 18px; }
+.toc a { color: var(--accent); text-decoration: none; }
+input[type="checkbox"] { transform: scale(1.05); margin-right: 8px; vertical-align: text-bottom; }
+.section {
+  background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin: 16px 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+/* Print styles */
+@media print {
+  body { background: #fff; }
+  .header { background: none; border: none; padding: 0; }
+  .toc { break-inside: avoid; }
+  h1 { page-break-after: avoid; }
+  h2 { page-break-before: auto; }
+  .section { page-break-inside: avoid; }
+  a { color: black; text-decoration: none; }
+}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>Roadmap: Full‑stack React + Django REST Framework</h1>
+      <p style="color:var(--muted); margin: 0;">Подробный учебный план от нуля до джуна/мидла, с чек‑листами и практикой.</p>
+    </div>
+  </header>
+  <main class="container">
+    <nav class='toc'><h2>Содержание</h2><ul>
+<li style='margin-left:12px'><a href='#как-работать-с-планом'>Как работать с планом</a></li>
+<li style='margin-left:12px'><a href='#0-подготовка-окружения-и-навыки-разработчика-0–1-неделя'>0) Подготовка окружения и навыки разработчика (0–1 неделя)</a></li>
+<li style='margin-left:12px'><a href='#1-вебфундамент-htmlcssдоступность-сетьhttp-базовый-javascript-2–3-недели'>1) Веб‑фундамент: HTML/CSS/Доступность + Сеть/HTTP + Базовый JavaScript (2–3 недели)</a></li>
+<li style='margin-left:12px'><a href='#11-htmlcssaccessibility'>1.1 HTML/CSS/Accessibility</a></li>
+<li style='margin-left:12px'><a href='#12-сеть-и-http'>1.2 Сеть и HTTP</a></li>
+<li style='margin-left:12px'><a href='#13-javascript-современный'>1.3 JavaScript (современный)</a></li>
+<li style='margin-left:12px'><a href='#2-reactфундамент-4–6-недель'>2) React‑фундамент (4–6 недель)</a></li>
+<li style='margin-left:12px'><a href='#3-pythonфундамент-1–2-недели'>3) Python‑фундамент (1–2 недели)</a></li>
+<li style='margin-left:12px'><a href='#4-djangoфундамент-2–3-недели'>4) Django‑фундамент (2–3 недели)</a></li>
+<li style='margin-left:12px'><a href='#5-django-rest-framework-3–4-недели'>5) Django REST Framework (3–4 недели)</a></li>
+<li style='margin-left:12px'><a href='#6-postgresql-и-данные-1–2-недели-параллельно'>6) PostgreSQL и данные (1–2 недели, параллельно)</a></li>
+<li style='margin-left:12px'><a href='#7-инфраструктура-безопасность-и-эксплуатация-2-недели'>7) Инфраструктура, безопасность и эксплуатация (2 недели)</a></li>
+<li style='margin-left:12px'><a href='#8-склейка-фронта-и-бэка-1–2-недели'>8) Склейка фронта и бэка (1–2 недели)</a></li>
+<li style='margin-left:12px'><a href='#9-продвинутое-по-желанию'>9) Продвинутое (по желанию)</a></li>
+<li style='margin-left:12px'><a href='#10-линейка-портфолиопроектов-и-фичи'>10) Линейка портфолио‑проектов и фичи</a></li>
+<li style='margin-left:12px'><a href='#11-контрольные-чеклисты'>11) Контрольные чек‑листы</a></li>
+<li style='margin-left:12px'><a href='#12-учебные-спринты-пример-на-12-недель'>12) Учебные спринты (пример на 12 недель)</a></li>
+<li style='margin-left:12px'><a href='#13-карта-модулей-с-детализацией-тем'>13) Карта модулей с детализацией тем</a></li>
+<li style='margin-left:12px'><a href='#модуль-a-htmlcssa11y-фундамент'>Модуль A. HTML/CSS/A11y (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-b-javascript-фундамент'>Модуль B. JavaScript (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-c-react-фундамент'>Модуль C. React (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-d-typescript-рекомендуется'>Модуль D. TypeScript (рекомендуется)</a></li>
+<li style='margin-left:12px'><a href='#модуль-e-python-фундамент'>Модуль E. Python (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-f-django-фундамент'>Модуль F. Django (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-g-drf-фундамент'>Модуль G. DRF (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-h-postgresql-фундамент'>Модуль H. PostgreSQL (фундамент)</a></li>
+<li style='margin-left:12px'><a href='#модуль-i-инфра-и-эксплуатация'>Модуль I. Инфра и эксплуатация</a></li>
+<li style='margin-left:12px'><a href='#14-минилабораторные-по-60–90-минут'>14) Мини‑лабораторные (по 60–90 минут)</a></li>
+<li style='margin-left:12px'><a href='#15-итоговая-аттестация-selfcheck'>15) Итоговая аттестация (self‑check)</a></li>
+<li style='margin-left:12px'><a href='#16-интервью-и-практика-задач'>16) Интервью и практика задач</a></li>
+<li style='margin-left:12px'><a href='#приложение-формат-ежедневной-практики-1–2-часа'>Приложение: формат ежедневной практики (1–2 часа)</a></li>
+</ul></nav>
+    <article class="section">
+      <h1 id="roadmap-fullstack-react-drf-от-нуля-до-джунамидла">Roadmap: Full‑stack React + DRF (от нуля до джуна/мидла)</h1>
+
+<p>Этот документ — подробный учебный план с упором на <strong>фундамент</strong> каждого направления. По каждому блоку есть: цели, что выучить (ядро), практические шаги, артефакты в портфолио и критерии готовности. Отмечайте галочками чек‑боксы по мере продвижения.</p>
+
+<hr>
+
+<h2 id="как-работать-с-планом">Как работать с планом</h2>
+<ul>
+<li>Идите слоями: <strong>основа → практика → рефакторинг → тесты</strong>.</li>
+<li>Каждую неделю создавайте артефакт: коммит, мини‑проект, заметку, тесты.</li>
+<li>Время ориентировочно дано для режима 15–20 ч/нед. Ускорять можно за счёт мини‑проектов.</li>
+</ul>
+
+<hr>
+
+<h2 id="0-подготовка-окружения-и-навыки-разработчика-0–1-неделя">0) Подготовка окружения и навыки разработчика (0–1 неделя)</h2>
+<p><strong>Цели:</strong> уверенно работать с инструментами и контролировать среду.</p>
+
+<p><strong>Что выучить (фундамент):</strong></p>
+<ul>
+<li>Командная строка: навигация, alias’ы, управление процессами, <code>curl</code>, <code>grep</code>, <code>sed</code>, <code>ssh</code>.</li>
+<li>Git: <code>clone</code>, <code>branch</code>, <code>commit</code>, <code>rebase</code>, <code>merge</code>, <code>stash</code>, <code>cherry-pick</code>, <code>tag</code>, PR/Code Review.</li>
+<li>VS Code: multi‑cursor, debug, tasks, launch configs, snippets.</li>
+<li>Node LTS, npm/yarn/pnpm; Python 3.12+, <code>venv</code>/<code>poetry</code>.</li>
+<li>Форматирование и линтинг: Prettier/ESLint (JS/TS), Black/isort/flake8 (Python), EditorConfig.</li>
+<li>Инструменты API: Postman/Insomnia; JSON Schema/OpenAPI (на уровне чтения).</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Настройте репозиторий <code>starter</code> с шаблонами: lint/format hooks (Husky/ruff pre-commit), CI на GitHub Actions.</li>
+<li>Соберите dotfiles или VS Code Settings Sync.</li>
+</ul>
+
+<p><strong>Критерии готовности:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Репозиторий‑шаблон с линтером и форматтером</label></li>
+<li><label><input type="checkbox" > CI прогоняет линты и тесты</label></li>
+<li><label><input type="checkbox" > Уверенно работаете с ветками и PR</label></li>
+</ul>
+
+<hr>
+
+<h2 id="1-вебфундамент-htmlcssдоступность-сетьhttp-базовый-javascript-2–3-недели">1) Веб‑фундамент: HTML/CSS/Доступность + Сеть/HTTP + Базовый JavaScript (2–3 недели)</h2>
+<p><strong>Цели:</strong> понимать, как строится страница, как она грузится и общается с сервером.</p>
+
+<h3 id="11-htmlcssaccessibility">1.1 HTML/CSS/Accessibility</h3>
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Семантика HTML5: <code>header/main/nav/section/article/aside/footer</code>, формы (<code>label</code>, <code>fieldset</code>, <code>aria-*</code>).</li>
+<li>Макеты: Flexbox, Grid, responsive, fluid typography, мобильное меню.</li>
+<li>CSS: каскад/специфичность, переменные (custom properties), BEM/utility‑first, анимации (transition/transform).</li>
+<li>A11y: фокус‑менеджмент, контраст, клавиатурная навигация, <code>aria-live</code>.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Лендинг + форма обратной связи (валидация на JS) + тёмная тема.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Lighthouse a11y ≥ 90</label></li>
+<li><label><input type="checkbox" > Макет не «ломается» < 360px и > 1440px</label></li>
+</ul>
+
+<h3 id="12-сеть-и-http">1.2 Сеть и HTTP</h3>
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Жизненный цикл запроса: DNS → TCP/TLS → HTTP/2.</li>
+<li>Методы/статусы/заголовки, кеширование (ETag/Cache‑Control), CORS, cookies, SameSite.</li>
+<li>REST принципы, idempotency, пагинация, фильтры, ошибки.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Снимите запросы DevTools, разберите кеш/ререндер.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Объясняете CORS, preflight, SameSite</label></li>
+</ul>
+
+<h3 id="13-javascript-современный">1.3 JavaScript (современный)</h3>
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Типы/объекты/массивы, замыкания, прототипы, модули, async/await, промисы, генераторы, итераторы.</li>
+<li>Работа с DOM/Events, fetch/AbortController, таймеры, дебаунс/троттлинг.</li>
+<li>Ошибки: try/catch, <code>Error</code>, стек, логирование.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>To‑Do без библиотек: добавление/редактирование/фильтры/персист в <code>localStorage</code>.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Решаете типовые задачи на массивы/объекты «в лоб» и функционально</label></li>
+</ul>
+
+<hr>
+
+<h2 id="2-reactфундамент-4–6-недель">2) React‑фундамент (4–6 недель)</h2>
+<p><strong>Цели:</strong> уметь собирать UI‑сцены, управлять состоянием, работать с данными.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Архитектура: компонентный подход, пропсы, композиция, lifting state, контейнер/презентационный компонент.</li>
+<li>Хуки: <code>useState</code>, <code>useEffect</code> (зависимости и гонки), <code>useMemo</code>, <code>useCallback</code>, <code>useRef</code>, кастомные хуки.</li>
+<li>Роутинг: React Router (layout routes, protected routes, lazy loading, loaders/actions при необходимости).</li>
+<li>Формы: React Hook Form + Zod/Yup (схемы, резолвер, формы многошаговые).</li>
+<li>Состояние: Redux Toolkit (slices, RTK Query) <strong>или</strong> Zustand/Jotai — понимать trade‑offs.</li>
+<li>Data fetching: паттерны (stale‑while‑revalidate, optimistic updates), кеш, отмена запросов.</li>
+<li>UI/стили: Tailwind CSS (utility‑first, responsive, dark), Headless UI/shadcn (по необходимости).</li>
+<li>Тестирование: Jest + React Testing Library (юнит, интеграции компонент, моки API), coverage.</li>
+<li>Производительность: мемоизация, ключи, виртуализация списков, <code>React.Suspense</code> (базово).</li>
+<li>Бандлинг: Vite, code‑splitting, env‑переменные.</li>
+<li>(Рекомендовано) TypeScript: типы пропсов, дженерики для хуков, утилиты <code>Partial/Record/Pick</code>, типизация RTK Query.</li>
+</ul>
+
+<p><strong>Практика (проект):</strong></p>
+<ul>
+<li><strong>Task Dashboard SPA</strong>: аутентификация mock, CRUD досок/колонок/карт, поиск/фильтры, drag‑and‑drop, сохранение предпочтений.</li>
+</ul>
+
+<p><strong>Артефакты:</strong></p>
+<ul>
+<li>README с архитектурой, скриншоты, E2E‑демо (Vercel/Netlify).</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > 80%+ покрытие ключевых компонентов</label></li>
+<li><label><input type="checkbox" > RTK Query/React Query для работы с мок‑API</label></li>
+<li><label><input type="checkbox" > Lighthouse Perf ≥ 85</label></li>
+</ul>
+
+<hr>
+
+<h2 id="3-pythonфундамент-1–2-недели">3) Python‑фундамент (1–2 недели)</h2>
+<p><strong>Цели:</strong> уверенно писать чистый, типизированный код.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Язык: типы, коллекции, срезы, списковые включения, <code>*args/**kwargs</code>, контекстные менеджеры, исключения.</li>
+<li>Файловый ввод/вывод, сериализация JSON, <code>dataclasses</code>.</li>
+<li>ООП: наследование, композиция, протоколы/<code>abc</code>.</li>
+<li>Типизация: <code>typing</code>, <code>mypy</code>, <code>pydantic</code> (как инструмент валидации — концептуально).</li>
+<li>Управление зависимостями: <code>venv</code>/<code>poetry</code>.</li>
+<li>Тесты: <code>pytest</code>, фикстуры, параметризация, coverage.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Утилита импорта/экспорта JSON↔CSV, покрытая тестами.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > mypy без ошибок на основном модуле</label></li>
+<li><label><input type="checkbox" > pytest проходит локально и в CI</label></li>
+</ul>
+
+<hr>
+
+<h2 id="4-djangoфундамент-2–3-недели">4) Django‑фундамент (2–3 недели)</h2>
+<p><strong>Цели:</strong> модель‑ориентированная разработка и уверенная работа с ORM.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Проект/приложения, настройки (env‑переменные, <code>django-environ</code>), миграции.</li>
+<li>Модели: поля/сигналы, <code>Meta</code>, индексы, уникальные ограничения, связи (FK/M2M/OneToOne), валидаторы.</li>
+<li>ORM: фильтрация/агрегации/аннотации, <code>select_related/prefetch_related</code>, сырой SQL, транзакции.</li>
+<li>Админка: ресурсы, инлайны, фильтры, действия.</li>
+<li>Вью: FBV/CBV, middleware, контекст, <code>get_object_or_404</code>.</li>
+<li>Безопасность: CSRF, XSS, настройки <code>SECURE_*</code>, <code>ALLOWED_HOSTS</code>.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Мини‑блог с тэгами, админкой, поиском по полнотекстовому индексу (Postgres).</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Понимаете N+1 и устраняете его ORM‑инструментами</label></li>
+<li><label><input type="checkbox" > Миграции воспроизводимы с нуля</label></li>
+</ul>
+
+<hr>
+
+<h2 id="5-django-rest-framework-3–4-недели">5) Django REST Framework (3–4 недели)</h2>
+<p><strong>Цели:</strong> проектировать и реализовывать устойчивые REST‑API.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Сериализаторы: <code>Serializer/ModelSerializer</code>, валидаторы уровня поля/объекта, вложенные сериализаторы, <code>source</code>, <code>read_only</code>/<code>write_only</code>.</li>
+<li>Представления: <code>APIView</code>, <code>GenericAPIView</code>, <code>ViewSet</code>, <code>ModelViewSet</code>, <code>mixins</code>.</li>
+<li>Роутеры и URL, namespacing, версионирование.</li>
+<li>Пагинация (Limit/Offset, PageNumber), фильтры (<code>django-filter</code>), сортировки, поиск.</li>
+<li>Права/пермишены, кастомные пермишены, throttling/ratelimit.</li>
+<li>Аутентификация: JWT (<code>djangorestframework-simplejwt</code>), refresh/rotate, blacklist.</li>
+<li>Ошибки: единый формат ошибок, кастомный <code>ExceptionHandler</code>.</li>
+<li>Документация: OpenAPI/Swagger с <code>drf-spectacular</code>, схемы, примеры.</li>
+<li>Тесты: API‑тесты (pytest‑django), фабрики (factory_boy), фикстуры БД.</li>
+</ul>
+
+<p><strong>Практика (проект):</strong></p>
+<ul>
+<li><strong>Kanban API</strong>: User/Board/List/Card/Comment, роли (owner/member/guest), фильтры/поиск, пагинация, JWT, Swagger, 70%+ coverage.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Все CRUD ручки типизированы и задокументированы</label></li>
+<li><label><input type="checkbox" > JWT‑аутентификация с refresh работает в Postman</label></li>
+<li><label><input type="checkbox" > Фильтры и пагинация консистентны на всех списках</label></li>
+</ul>
+
+<hr>
+
+<h2 id="6-postgresql-и-данные-1–2-недели-параллельно">6) PostgreSQL и данные (1–2 недели, параллельно)</h2>
+<p><strong>Цели:</strong> проектировать схемы и писать эффективные запросы.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Проектирование БД: нормализация (1–3НФ), денормализация, индексы (B‑tree, partial, composite), внешние ключи.</li>
+<li>Транзакции и уровни изоляции, блокировки, deadlocks.</li>
+<li>План выполнения: <code>EXPLAIN/ANALYZE</code>, оценка стоимости.</li>
+<li>Миграции/сид‑данные, миграции с простой «катастрофоустойчивостью».</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Индексируйте горячие запросы Kanban API, сравните планы до/после.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Нет долгих N+1; сложные списки отвечают < 200мс на dev</label></li>
+</ul>
+
+<hr>
+
+<h2 id="7-инфраструктура-безопасность-и-эксплуатация-2-недели">7) Инфраструктура, безопасность и эксплуатация (2 недели)</h2>
+<p><strong>Цели:</strong> собрать прод‑окружение и доставлять изменения безопасно.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Docker/Compose: multi‑container (db, redis, backend, frontend), healthchecks, volume’ы, сети.</li>
+<li>Настройка prod: Gunicorn + Nginx, статика/медиа, <code>whitenoise</code> (если нужно), логирование (JSON logs).</li>
+<li>Переменные окружения и секреты, 12‑Factor, конфигурация для dev/stage/prod.</li>
+<li>CI/CD: GitHub Actions (линты → тесты → build → deploy), кеширование зависимостей.</li>
+<li>Наблюдаемость: Sentry, health‑checks, метрики (Prometheus/Grafana — по желанию).</li>
+<li>Безопасность: CORS, rate limiting, заголовки безопасности, пароли/хеши, регулярные бэкапы БД.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Docker Compose для всего стека, деплой backend (Render/Fly/Railway) + frontend (Vercel/Netlify), домен + HTTPS.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Проект поднимается одной командой <code>docker compose up</code></label></li>
+<li><label><input type="checkbox" > CI блокирует merge при провале линтов/тестов</label></li>
+</ul>
+
+<hr>
+
+<h2 id="8-склейка-фронта-и-бэка-1–2-недели">8) Склейка фронта и бэка (1–2 недели)</h2>
+<p><strong>Цели:</strong> надёжный контракт и UX‑устойчивость.</p>
+
+<p><strong>Что выучить:</strong></p>
+<ul>
+<li>Соглашение о схемах: единый формат ошибок, поля <code>next/previous/count/results</code> (или аналог), коды статусов.</li>
+<li>Аутентификация на фронте: хранение токенов (in‑memory + refresh), обновление/ревокация, guard routes.</li>
+<li>RTK Query/React Query: кеш‑ключи, invalidation, optimistic updates, polling/websocket streaming.</li>
+<li>Uploads: multipart на фронте, валидация размера/типа, предпросмотр; на бэке — валидация и S3‑совместимое хранилище.</li>
+</ul>
+
+<p><strong>Практика:</strong></p>
+<ul>
+<li>Подключите SPA к Kanban API, реализуйте роли и разграничение маршрутов, загрузку файлов.</li>
+</ul>
+
+<p><strong>Критерии:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Любой API‑фейл отображается пользователю контролируемо</label></li>
+<li><label><input type="checkbox" > RTK Query управляет кешем без ручных костылей</label></li>
+</ul>
+
+<hr>
+
+<h2 id="9-продвинутое-по-желанию">9) Продвинутое (по желанию)</h2>
+<ul>
+<li>WebSockets: Django Channels (+ Redis), события в реальном времени.</li>
+<li>Очереди и фон: Celery (beat), ретраи, дедупликация задач.</li>
+<li>Платежи: Stripe/ЮKassa, вебхуки и подписи.</li>
+<li>i18n и локализация; многоарендность (tenants) базово.</li>
+<li>GraphQL (Strawberry/Graphene) и сравнение с REST по use‑cases.</li>
+</ul>
+
+<hr>
+
+<h2 id="10-линейка-портфолиопроектов-и-фичи">10) Линейка портфолио‑проектов и фичи</h2>
+<p><strong>Проект 1: React Dashboard (1–2 недели)</strong></p>
+<ul>
+<li>Фичи: авторизация mock, CRUD, фильтры, drag‑and‑drop, сохранение настроек.</li>
+<li>Акценты: формы/валидация, тесты компонентов, Lighthouse.</li>
+</ul>
+
+<p><strong>Проект 2: Kanban API + SPA (2–4 недели)</strong></p>
+<ul>
+<li>Фичи: роли, поиск, пагинация, загрузка файлов, JWT, Swagger, Docker Compose, деплой.</li>
+<li>Акценты: DRF‑паттерны, индексация БД, CI/CD, наблюдаемость.</li>
+</ul>
+
+<p><strong>Проект 3: Mini e‑commerce (4–6 недель)</strong></p>
+<ul>
+<li>Фичи: каталог, корзина, оплата (sandbox), админ‑панель, e‑mail рассылки, фоновые задачи.</li>
+<li>Акценты: транзакционность, вебхуки, безопасность, прод‑конфиг.</li>
+</ul>
+
+<hr>
+
+<h2 id="11-контрольные-чеклисты">11) Контрольные чек‑листы</h2>
+<p><strong>Frontend (React/TS):</strong></p>
+<ul>
+<li><label><input type="checkbox" > Компоненты чистые, переиспользуемые</label></li>
+<li><label><input type="checkbox" > Формы на RHF + Zod; сложные схемы валидируемы</label></li>
+<li><label><input type="checkbox" > Роутинг с guard’ами</label></li>
+<li><label><input type="checkbox" > RTK Query/React Query со стратегиями кеша и оптимистич. обновлениями</label></li>
+<li><label><input type="checkbox" > Тесты компонентов и хуков (>= 80% критических)</label></li>
+</ul>
+
+<p><strong>Backend (DRF):</strong></p>
+<ul>
+<li><label><input type="checkbox" > Сериализаторы валидируют и скрывают write‑only секреты</label></li>
+<li><label><input type="checkbox" > Пагинация/фильтры/поиск консистентны</label></li>
+<li><label><input type="checkbox" > JWT (access/refresh) + пермишены по ролям</label></li>
+<li><label><input type="checkbox" > Кастомный ExceptionHandler и единый формат ошибок</label></li>
+<li><label><input type="checkbox" > OpenAPI схема со всеми ручками</label></li>
+<li><label><input type="checkbox" > Тесты API (>= 70%)</label></li>
+</ul>
+
+<p><strong>DB/Infra:</strong></p>
+<ul>
+<li><label><input type="checkbox" > Индексы на частых фильтрах/сортировках</label></li>
+<li><label><input type="checkbox" > Нет N+1 на ключевых эндпойнтах</label></li>
+<li><label><input type="checkbox" > Docker Compose поднимает весь стек</label></li>
+<li><label><input type="checkbox" > CI блокирует merge без тестов</label></li>
+<li><label><input type="checkbox" > Логи и мониторинг подключены</label></li>
+</ul>
+
+<hr>
+
+<h2 id="12-учебные-спринты-пример-на-12-недель">12) Учебные спринты (пример на 12 недель)</h2>
+<p><strong>Недели 1–2:</strong> HTML/CSS/a11y + HTTP + JS‑база; мини‑лендинг и To‑Do.</p>
+
+<p><strong>Недели 3–6:</strong> React/TS, Router, RHF+Zod, RTK Query, тесты; проект Dashboard.</p>
+
+<p><strong>Недели 7–9:</strong> Python → Django → DRF: сериализаторы, вьюсеты, фильтры, JWT, OpenAPI, тесты; Kanban API.</p>
+
+<p><strong>Неделя 10:</strong> Склейка SPA+API, роли/guard, загрузки, обработка ошибок, перформанс.</p>
+
+<p><strong>Неделя 11:</strong> Docker, деплой (Render/Vercel), CI/CD, логи, Sentry.</p>
+
+<p><strong>Неделя 12:</strong> Полировка портфеля, README/демо, резюме и mock‑интервью, 10–20 задач алгоритмов (easy/medium).</p>
+
+<hr>
+
+<h2 id="13-карта-модулей-с-детализацией-тем">13) Карта модулей с детализацией тем</h2>
+
+<h3 id="модуль-a-htmlcssa11y-фундамент">Модуль A. HTML/CSS/A11y (фундамент)</h3>
+<ul>
+<li>Семантика, формы, <code>aria‑</code> атрибуты</li>
+<li>Layout (Flex/Grid), медиазапросы, контейнер‑квери</li>
+<li>Тёмная тема (prefers‑color‑scheme)</li>
+<li>Адаптивные изображения (<code>srcset</code>, <code>sizes</code>)</li>
+<li>Оптимизация рендеринга шрифтов, FOUT/FOIT</li>
+</ul>
+
+<h3 id="модуль-b-javascript-фундамент">Модуль B. JavaScript (фундамент)</h3>
+<ul>
+<li>Значения/сравнения, область видимости, замыкания</li>
+<li>Прототипы/классы, модульная система (ESM)</li>
+<li>Асинхронщина: промисы, async/await, очереди микротасков/макротасков</li>
+<li>Работа с DOM и событиями, делегирование</li>
+<li>Fetch API, AbortController, обработка сетевых ошибок</li>
+</ul>
+
+<h3 id="модуль-c-react-фундамент">Модуль C. React (фундамент)</h3>
+<ul>
+<li>Ментальная модель рендера, согласование (reconciliation), ключи</li>
+<li>Хуки и правила хуков, кастомные хуки</li>
+<li>Контекст, композиция, колокейшн состояния</li>
+<li>React Router: nested routes, loaders/actions по необходимости</li>
+<li>Формы и валидация (RHF + Zod)</li>
+<li>Управление данными (RTK Query/React Query)</li>
+<li>Производительность: мемоизация и профилирование</li>
+<li>Тестирование компонент и хуков</li>
+</ul>
+
+<h3 id="модуль-d-typescript-рекомендуется">Модуль D. TypeScript (рекомендуется)</h3>
+<ul>
+<li>Типизация компонентов/пропсов/состояния</li>
+<li>Дженерики и утилиты типов, Discriminated Unions</li>
+<li>Типизация API‑ответов и RTK Query endpoints</li>
+</ul>
+
+<h3 id="модуль-e-python-фундамент">Модуль E. Python (фундамент)</h3>
+<ul>
+<li>Стандартная библиотека: <code>pathlib</code>, <code>itertools</code>, <code>functools</code>, <code>datetime</code></li>
+<li>Исключения, контекстные менеджеры, <code>dataclasses</code></li>
+<li>Типизация и <code>mypy</code></li>
+</ul>
+
+<h3 id="модуль-f-django-фундамент">Модуль F. Django (фундамент)</h3>
+<ul>
+<li>Проект/приложения/настройки, <code>django-environ</code></li>
+<li>Модели, миграции, индексы и ограничения</li>
+<li>ORM запросы, аннотации и агрегации</li>
+<li>Админка: настройка для операционных задач</li>
+</ul>
+
+<h3 id="модуль-g-drf-фундамент">Модуль G. DRF (фундамент)</h3>
+<ul>
+<li>Сериализаторы и валидаторы</li>
+<li>Вьюсеты, миксины, маршрутизация</li>
+<li>Пагинация/фильтры/поиск</li>
+<li>JWT и пермишены</li>
+<li>ExceptionHandler и единый формат ошибок</li>
+<li>OpenAPI/Swagger с примерами</li>
+<li>Тесты API (pytest‑django, factory_boy)</li>
+</ul>
+
+<h3 id="модуль-h-postgresql-фундамент">Модуль H. PostgreSQL (фундамент)</h3>
+<ul>
+<li>Нормализация/денормализация</li>
+<li>Индексы (B‑tree, partial, composite)</li>
+<li>Транзакции и уровни изоляции</li>
+<li>EXPLAIN/ANALYZE, планировщик, стоимость</li>
+</ul>
+
+<h3 id="модуль-i-инфра-и-эксплуатация">Модуль I. Инфра и эксплуатация</h3>
+<ul>
+<li>Docker/Compose, сети, volume’ы, healthchecks</li>
+<li>Nginx + Gunicorn, статика/медиа</li>
+<li>Логирование (структурированные логи), Sentry</li>
+<li>CI/CD (GitHub Actions) и стратегия бранчей</li>
+<li>Безопасность (заголовки, CORS, rate limit, секреты)</li>
+</ul>
+
+<hr>
+
+<h2 id="14-минилабораторные-по-60–90-минут">14) Мини‑лабораторные (по 60–90 минут)</h2>
+<ul>
+<li><strong>Lab 1 (React):</strong> модальное окно как headless‑компонент + trap фокуса.</li>
+<li><strong>Lab 2 (RTK Query):</strong> optimistic update и откат при 409/500.</li>
+<li><strong>Lab 3 (DRF):</strong> кастомный <code>IsOwnerOrReadOnly</code> + тесты прав.</li>
+<li><strong>Lab 4 (DB):</strong> <code>EXPLAIN</code> горячего списка карточек, индекс по <code>(board_id, position)</code>.</li>
+<li><strong>Lab 5 (Docker):</strong> multi‑stage build для бэка (минимальный образ).</li>
+</ul>
+
+<hr>
+
+<h2 id="15-итоговая-аттестация-selfcheck">15) Итоговая аттестация (self‑check)</h2>
+<ul>
+<li><label><input type="checkbox" > Канбан SPA + API задеплоены на публичные домены (HTTPS)</label></li>
+<li><label><input type="checkbox" > OpenAPI отражает фактические ответы</label></li>
+<li><label><input type="checkbox" > E2E‑сценарий «создать доску → добавить карточку → отредактировать → поиск → удаление» проходит стабильно</label></li>
+<li><label><input type="checkbox" > README проектов: стек, архитектура, схемы БД, скриншоты, ссылки на демо</label></li>
+</ul>
+
+<hr>
+
+<h2 id="16-интервью-и-практика-задач">16) Интервью и практика задач</h2>
+<ul>
+<li>10–20 задач уровня easy/medium (массивы/строки/хэши/двухуказатели).</li>
+<li>Системный дизайн (легкий): проектирование Kanban API, схемы БД, индексация, кеши.</li>
+<li>Поведенческие: STAR‑метод, примеры фейлов и выводов.</li>
+</ul>
+
+<hr>
+
+<h3 id="приложение-формат-ежедневной-практики-1–2-часа">Приложение: формат ежедневной практики (1–2 часа)</h3>
+<p>1) 15 мин — теория/конспект (1 тема).</p>
+<p>2) 45–60 мин — мини‑практика/фича.</p>
+<p>3) 10–15 мин — тесты/рефакторинг.</p>
+<p>4) 5 мин — заметка в README о прогрессе.</p>
+
+<blockquote>Готово для печати/экспорта. При желании могу развернуть план на 16 недель с распределением тем по дням и добавить шаблоны задач в виде GitHub Projects/Issues.</blockquote>
+    </article>
+  </main>
+</body>
+</html>
